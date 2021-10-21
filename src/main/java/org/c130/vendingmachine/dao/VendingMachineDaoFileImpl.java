@@ -34,12 +34,19 @@ public class VendingMachineDaoFileImpl implements VendingMachineDao{
         return items.get(name);
     }
 
+    @Override
     public void updateQty(Item item) throws VendingMachinePersistenceException {
         loadRoster();
         items.replace(item.getName(), item);
         writeRoster();
     }
 
+    @Override
+    public void addItem(Item item) throws VendingMachinePersistenceException {
+        loadRoster();
+        items.put(item.getName(), item);
+        writeRoster();
+    }
 
 
     private Item unmarshallItem(String itemAsText){

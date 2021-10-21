@@ -10,7 +10,11 @@ public interface VendingMachineDao {
 
     Item getItem(String name)
         throws VendingMachinePersistenceException;
+
     void updateQty(Item item)
+        throws VendingMachinePersistenceException;
+
+    void addItem(Item item)
         throws VendingMachinePersistenceException;
 
 }

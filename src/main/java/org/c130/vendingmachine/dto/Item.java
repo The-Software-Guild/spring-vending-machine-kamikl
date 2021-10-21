@@ -1,6 +1,7 @@
 package org.c130.vendingmachine.dto;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class Item {
     private String name;
@@ -11,6 +12,19 @@ public class Item {
         this.name = name;
         this.qty = qty;
         this.cost = cost;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return qty == item.qty && Objects.equals(name, item.name) && Objects.equals(cost, item.cost);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, qty, cost);
     }
 
     public String getName() {
