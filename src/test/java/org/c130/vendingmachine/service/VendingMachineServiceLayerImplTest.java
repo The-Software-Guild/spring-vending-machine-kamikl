@@ -6,6 +6,8 @@ import org.c130.vendingmachine.dao.VendingMachinePersistenceException;
 import org.c130.vendingmachine.dto.Item;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.FileWriter;
 import java.math.BigDecimal;
@@ -18,10 +20,10 @@ class VendingMachineServiceLayerImplTest {
     private VendingMachineServiceLayer service;
 
     public VendingMachineServiceLayerImplTest() {
-        VendingMachineDao dao = new VendingMachineDaoStubImpl();
-        VendingMachineAuditDao auditDao = new VendingMachineAuditDaoStubImpl();
-
-        service = new VendingMachineServiceLayerImpl(dao, auditDao);
+        ApplicationContext ctx =
+                new ClassPathXmlApplicationContext("applicationContext.xml");
+        service =
+                ctx.getBean("serviceLayer", VendingMachineServiceLayer.class);
     }
 
     @Test

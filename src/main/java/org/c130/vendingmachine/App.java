@@ -4,15 +4,15 @@ import org.c130.vendingmachine.controller.VendingMachineController;
 import org.c130.vendingmachine.dao.*;
 import org.c130.vendingmachine.service.*;
 import org.c130.vendingmachine.ui.*;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
     public static void main(String[] args) throws VendingMachinePersistenceException {
-        UserIO myIo = new UserIOConsoleImpl();
-        VendingMachineView myView = new VendingMachineView(myIo);
-        VendingMachineDao myDao = new VendingMachineDaoFileImpl();
-        VendingMachineAuditDao myAuditDao = new VendingMachineAuditDaoFileImpl();
-        VendingMachineServiceLayer myService = new VendingMachineServiceLayerImpl(myDao, myAuditDao);
-        VendingMachineController controller = new VendingMachineController(myService, myView);
+        ApplicationContext ctx =
+                new ClassPathXmlApplicationContext("applicationContext.xml");
+        VendingMachineController controller =
+                ctx.getBean("controller", VendingMachineController.class);
         controller.run();
     }
 }
