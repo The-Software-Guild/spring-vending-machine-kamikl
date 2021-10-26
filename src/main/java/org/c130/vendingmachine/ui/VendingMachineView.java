@@ -1,14 +1,18 @@
 package org.c130.vendingmachine.ui;
 
 import org.c130.vendingmachine.dto.Item;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.List;
 
+@Component
 public class VendingMachineView {
     private UserIO io;
 
+    @Autowired
     public VendingMachineView(UserIO io) {
         this.io = io;
     }

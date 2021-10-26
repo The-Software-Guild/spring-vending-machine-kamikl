@@ -7,15 +7,19 @@ import org.c130.vendingmachine.service.VendingMachineNoItemInventoryException;
 import org.c130.vendingmachine.service.VendingMachineNoSuchItemException;
 import org.c130.vendingmachine.service.VendingMachineServiceLayer;
 import org.c130.vendingmachine.ui.VendingMachineView;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+@Component
 public class VendingMachineController {
 
     private VendingMachineView view;
     private VendingMachineServiceLayer service;
 
+    @Autowired
     public VendingMachineController(VendingMachineServiceLayer service, VendingMachineView view) {
         this.service = service;
         this.view = view;

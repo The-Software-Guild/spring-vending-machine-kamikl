@@ -4,15 +4,19 @@ import org.c130.vendingmachine.dao.VendingMachineAuditDao;
 import org.c130.vendingmachine.dao.VendingMachineDao;
 import org.c130.vendingmachine.dao.VendingMachinePersistenceException;
 import org.c130.vendingmachine.dto.Item;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+@Component
 public class VendingMachineServiceLayerImpl implements VendingMachineServiceLayer{
 
     private VendingMachineDao dao;
     private VendingMachineAuditDao auditDao;
 
+    @Autowired
     public VendingMachineServiceLayerImpl(VendingMachineDao dao, VendingMachineAuditDao auditDao) {
         this.dao = dao;
         this.auditDao = auditDao;
